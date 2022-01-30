@@ -1,6 +1,6 @@
 # read our data
 import pandas as pd
-data = pd.read_csv('vertebral_column_data/column_2C_with_headers.dat', sep=' ')
+data = pd.read_csv('vertebral_column_data/column_3C_with_headers.dat', sep=' ')
 
 # create a mapping from category ID to category name
 lookup_category = dict(zip(data.category_id.unique(), data.category.unique()))
@@ -41,14 +41,6 @@ prediction = knn.predict(unknown1)
 print(prediction[0])
 print(knn.predict_proba(unknown1))
 
-exit(0) # TODO
-
-# second example: a larger, elongated fruit with mass 100g, width 6.3 cm, height 8.5 cm, color_score 6.3
-unknown2 = pd.DataFrame([[8.5, 6.3, 100, 6.3]], columns=['height', 'width', 'mass', 'color_score'])
-fruit_prediction = knn.predict(unknown2)
-print(lookup_fruit_name[fruit_prediction[0]])
-print(knn.predict_proba(unknown2))
-
 from sklearn.model_selection import train_test_split
 #random_state: set seed for random# generator
 #test_size: default 25% testing, 75% training
@@ -80,10 +72,10 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import axes3d   # must keep
 fig = plt.figure()
 ax = fig.add_subplot(111, projection = '3d')
-ax.scatter(X['width'], X['height'], X['color_score'], c = y, marker = 'o', s=100)
-ax.set_xlabel('width')
-ax.set_ylabel('height')
-ax.set_zlabel('color_score')
+ax.scatter(X['pelvic_incidence'], X['pelvic_tilt'], X['pelvic_radius'], c = y, marker = 'o', s=100)
+ax.set_xlabel('pelvic_incidence')
+ax.set_ylabel('pelvic_tilt')
+ax.set_zlabel('pelvic_radius')
 
 plt.figure()
 plt.xlabel('k')
