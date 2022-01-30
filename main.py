@@ -1,31 +1,47 @@
-X = [[0], [1], [2], [3]]
-y = [0, 0, 1, 1]
-from sklearn.neighbors import KNeighborsClassifier
-knn = KNeighborsClassifier(n_neighbors=3)
-knn.fit(X, y)
-
-# predict the class of instance 1.1
-print(knn.predict([[1.1]]))
-# with probabilities
-print(knn.predict_proba([[1.1]]))
-
+# read our data
 import pandas as pd
-fruits = pd.read_csv('fruit_data_with_colors.txt', sep='\t')
-fruits.head()
+data = pd.read_csv('vertebral_column_data/column_2C_with_headers.dat', sep=' ')
 
 # create a mapping from fruit label value to fruit name to make results easier to interpret
-lookup_fruit_name = dict(zip(fruits.fruit_label.unique(), fruits.fruit_name.unique()))
-print(lookup_fruit_name)
+# lookup_fruit_name = dict(zip(fruits.fruit_label.unique(), fruits.fruit_name.unique()))
+# print(lookup_fruit_name)
 
-X = fruits[['height', 'width', 'mass', 'color_score']]
-y = fruits['fruit_label']
+from sklearn.neighbors import KNeighborsClassifier
 
+# create a 3NN classifier for our data
+knn = KNeighborsClassifier(n_neighbors=3)
+X = data[[
+    'pelvic_incidence',
+    'pelvic_tilt',
+    'lumbar_lordosis_angle',
+    'sacral_slope',
+    'pelvic_radius',
+    'spondylolisthesis_grade',
+]]
+y = data['category']
 knn.fit(X, y)
 
-unknown1 = pd.DataFrame([[5.5, 4.3, 20, 5.5]], columns=['height', 'width', 'mass', 'color_score'])
-fruit_prediction = knn.predict(unknown1)
-print(lookup_fruit_name[fruit_prediction[0]])
+# make a prediction for another data point
+unknown1 = pd.DataFrame([[
+    50,
+    15,
+    40,
+    35,
+    110,
+    2,
+]], columns=[
+    'pelvic_incidence',
+    'pelvic_tilt',
+    'lumbar_lordosis_angle',
+    'sacral_slope',
+    'pelvic_radius',
+    'spondylolisthesis_grade',
+])
+prediction = knn.predict(unknown1)
+print(prediction[0])
 print(knn.predict_proba(unknown1))
+
+exit(0) # TODO
 
 # second example: a larger, elongated fruit with mass 100g, width 6.3 cm, height 8.5 cm, color_score 6.3
 unknown2 = pd.DataFrame([[8.5, 6.3, 100, 6.3]], columns=['height', 'width', 'mass', 'color_score'])
