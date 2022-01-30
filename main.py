@@ -2,9 +2,9 @@
 import pandas as pd
 data = pd.read_csv('vertebral_column_data/column_2C_with_headers.dat', sep=' ')
 
-# create a mapping from fruit label value to fruit name to make results easier to interpret
-# lookup_fruit_name = dict(zip(fruits.fruit_label.unique(), fruits.fruit_name.unique()))
-# print(lookup_fruit_name)
+# create a mapping from category ID to category name
+lookup_category = dict(zip(data.category_id.unique(), data.category.unique()))
+print(lookup_category)
 
 from sklearn.neighbors import KNeighborsClassifier
 
@@ -18,7 +18,7 @@ X = data[[
     'pelvic_radius',
     'spondylolisthesis_grade',
 ]]
-y = data['category']
+y = data['category_id']
 knn.fit(X, y)
 
 # make a prediction for another data point
