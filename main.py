@@ -11,7 +11,7 @@ from sklearn.neighbors import KNeighborsClassifier
 # initialize k, p, and partition values used in practical calculations
 KPRACTICE = 4
 PPRACTICE = 2
-PERPRACTICE = 0.25
+PERPRACTICE = 0.20
 
 # create a 3NN classifier for our data
 knn = KNeighborsClassifier(n_neighbors=KPRACTICE, p=PPRACTICE)
@@ -26,9 +26,16 @@ X = data[[
 y = data['category_id']
 knn.fit(X, y)
 
+# Create report on data
+import numpy as np
+print("This dataset has 6 attributes\n")
+print("The class distribution of this dataset is: ", "\n")
+print("Our data is partitioned to: ", 100 * (1 - PERPRACTICE), "% Training ", 100 * PERPRACTICE, "% Testing\n")
+print("Our distance calculations use the Minkowski distance function with p=", PPRACTICE, "\n")
+
 from sklearn.model_selection import train_test_split
 #random_state: set seed for random# generator
-#test_size: default 25% testing, 75% training
+#test_size: default 20% testing, 80% training
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=PERPRACTICE, random_state=42)
 
 # Train the classifier (fit the estimator) using the training data
@@ -83,7 +90,6 @@ plt.scatter(p_range, pScores)
 plt.xticks([0, 2, 4, 6, 8])
 
 # How sensitive is k-NN classification accuracy to the train/test split proportion?
-import numpy as np
 t = [0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2]
 knn = KNeighborsClassifier(n_neighbors=KPRACTICE, p=PPRACTICE)
 plt.figure()
