@@ -8,8 +8,13 @@ print(lookup_category)
 
 from sklearn.neighbors import KNeighborsClassifier
 
+# initialize k, p, and partition values used in practical calculations
+KPRACTICE = 4
+PPRACTICE = 2
+PERPRACTICE = 0.25
+
 # create a 3NN classifier for our data
-knn = KNeighborsClassifier(n_neighbors=4, p=2)
+knn = KNeighborsClassifier(n_neighbors=KPRACTICE, p=PPRACTICE)
 X = data[[
     'pelvic_incidence',
     'pelvic_tilt',
@@ -44,7 +49,7 @@ print(knn.predict_proba(unknown1))
 from sklearn.model_selection import train_test_split
 #random_state: set seed for random# generator
 #test_size: default 25% testing, 75% training
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.20, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=PERPRACTICE, random_state=42)
 
 # Train the classifier (fit the estimator) using the training data
 knn.fit(X_train, y_train)
@@ -56,7 +61,7 @@ knn.score(X_test, y_test)
 k_range = range(1, 20)
 kScores = []
 for k in k_range:
-    knn = KNeighborsClassifier(n_neighbors=k, p=2)
+    knn = KNeighborsClassifier(n_neighbors=k, p=PPRACTICE)
     knn.fit(X_train, y_train)
     kScores.append(knn.score(X_test, y_test))
 
@@ -64,7 +69,7 @@ for k in k_range:
 p_range = range(1, 8)
 pScores = []
 for pVal in p_range:
-    knn = KNeighborsClassifier(n_neighbors=4, p=pVal)
+    knn = KNeighborsClassifier(n_neighbors=KPRACTICE, p=pVal)
     knn.fit(X_train, y_train)
     pScores.append(knn.score(X_test, y_test))
 
@@ -100,7 +105,7 @@ plt.xticks([0, 2, 4, 6, 8])
 # How sensitive is k-NN classification accuracy to the train/test split proportion?
 import numpy as np
 t = [0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2]
-knn = KNeighborsClassifier(n_neighbors=4, p=2)
+knn = KNeighborsClassifier(n_neighbors=kpractice, p=PPRACTICE)
 plt.figure()
 for s in t:
     scores = []
