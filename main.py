@@ -36,8 +36,8 @@ print("The class distribution of this dataset is:")
 for class_name in data['category'].unique():
     rows_matching_class = data[data['category'] == class_name]
     print(f'\tClass {class_name} contains {len(rows_matching_class)} data points')
-print("Our data is partitioned to: ", 100 * (1 - PERPRACTICE), "% Training ", 100 * PERPRACTICE, "% Testing\n")
-print("Our distance calculations use the Minkowski distance function with p=", PPRACTICE, "\n")
+print("Our data is partitioned to: ", 100 * (1 - PERPRACTICE), "% Training ", 100 * PERPRACTICE, "% Testing")
+print("Our distance calculations use the Minkowski distance function with p=", PPRACTICE)
 
 print("More information about each class:")
 
