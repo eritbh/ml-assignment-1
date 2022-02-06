@@ -13,28 +13,52 @@ KPRACTICE = 4
 PPRACTICE = 2
 PERPRACTICE = 0.20
 
-# create a 3NN classifier for our data
-knn = KNeighborsClassifier(n_neighbors=KPRACTICE, p=PPRACTICE)
-X = data[[
+# a constant list of attributes
+ATTRIBUTES = [
     'pelvic_incidence',
     'pelvic_tilt',
     'lumbar_lordosis_angle',
     'sacral_slope',
     'pelvic_radius',
     'spondylolisthesis_grade',
-]]
+]
+
+# create a 3NN classifier for our data
+knn = KNeighborsClassifier(n_neighbors=KPRACTICE, p=PPRACTICE)
+X = data[ATTRIBUTES]
 y = data['category_id']
 knn.fit(X, y)
 
 # Create report on data
 import numpy as np
 print("This dataset has 6 attributes\n")
-print("The class distribution of this dataset is: ", "\n")
+print("The class distribution of this dataset is:")
 for class_name in data['category'].unique():
     rows_matching_class = data[data['category'] == class_name]
     print(f'\tClass {class_name} contains {len(rows_matching_class)} data points')
 print("Our data is partitioned to: ", 100 * (1 - PERPRACTICE), "% Training ", 100 * PERPRACTICE, "% Testing\n")
 print("Our distance calculations use the Minkowski distance function with p=", PPRACTICE, "\n")
+
+print("More information about each class:")
+
+# repeat for each unique class
+for class_name in data['category'].unique():
+    print(f"\nClass {class_name}:")
+
+    # get the rows matching this class
+    rows_matching_class = data[data['category'] == class_name]
+    # remove the class columns from the data since we don't need it
+    rows_attributes_only = rows_matching_class[ATTRIBUTES]
+
+    # calculate statistics
+    print("\nMean data point in class:")
+    print(rows_attributes_only.mean())
+    print("\nMedian data point in class:")
+    print(rows_attributes_only.mean())
+    print("\nMinimums in class:")
+    print(rows_attributes_only.min())
+    print("\nMaximums in class:")
+    print(rows_attributes_only.mean())
 
 from sklearn.model_selection import train_test_split
 #random_state: set seed for random# generator
