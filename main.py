@@ -3,8 +3,8 @@ import pandas as pd
 data = pd.read_csv('vertebral_column_data/column_3C_with_headers.dat', sep=' ')
 
 # create a mapping from category ID to category name
-lookup_category = dict(zip(data.category_id.unique(), data.category.unique()))
-print(lookup_category)
+# lookup_category = dict(zip(data.category_id.unique(), data.category.unique()))
+# print(lookup_category)
 
 from sklearn.neighbors import KNeighborsClassifier
 
