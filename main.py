@@ -6,11 +6,6 @@ data = pd.read_csv('vertebral_column_data/column_3C_with_headers.dat', sep=' ')
 # lookup_category = dict(zip(data.category_id.unique(), data.category.unique()))
 # print(lookup_category)
 
-# print class distribution of model data
-for class_name in data['category'].unique():
-    rows_matching_class = data[data['category'] == class_name]
-    print(f'Class {class_name} contains {len(rows_matching_class)} data points')
-
 from sklearn.neighbors import KNeighborsClassifier
 
 # initialize k, p, and partition values used in practical calculations
@@ -35,6 +30,9 @@ knn.fit(X, y)
 import numpy as np
 print("This dataset has 6 attributes\n")
 print("The class distribution of this dataset is: ", "\n")
+for class_name in data['category'].unique():
+    rows_matching_class = data[data['category'] == class_name]
+    print(f'\tClass {class_name} contains {len(rows_matching_class)} data points')
 print("Our data is partitioned to: ", 100 * (1 - PERPRACTICE), "% Training ", 100 * PERPRACTICE, "% Testing\n")
 print("Our distance calculations use the Minkowski distance function with p=", PPRACTICE, "\n")
 
