@@ -6,6 +6,11 @@ data = pd.read_csv('vertebral_column_data/column_3C_with_headers.dat', sep=' ')
 # lookup_category = dict(zip(data.category_id.unique(), data.category.unique()))
 # print(lookup_category)
 
+# print class distribution of model data
+for class_name in data['category'].unique():
+    rows_matching_class = data[data['category'] == class_name]
+    print(f'Class {class_name} contains {len(rows_matching_class)} data points')
+
 from sklearn.neighbors import KNeighborsClassifier
 
 # initialize k, p, and partition values used in practical calculations
