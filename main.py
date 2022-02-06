@@ -59,6 +59,8 @@ for class_name in data['category'].unique():
     print(rows_attributes_only.min())
     print("\nMaximums in class:")
     print(rows_attributes_only.max())
+    print("\nStandard deviations in class:")
+    print(rows_attributes_only.std())
 
 from sklearn.model_selection import train_test_split
 #random_state: set seed for random# generator
