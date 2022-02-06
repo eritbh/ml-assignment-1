@@ -26,26 +26,6 @@ X = data[[
 y = data['category_id']
 knn.fit(X, y)
 
-# make a prediction for another data point
-unknown1 = pd.DataFrame([[
-    50,
-    15,
-    40,
-    35,
-    110,
-    2,
-]], columns=[
-    'pelvic_incidence',
-    'pelvic_tilt',
-    'lumbar_lordosis_angle',
-    'sacral_slope',
-    'pelvic_radius',
-    'spondylolisthesis_grade',
-])
-prediction = knn.predict(unknown1)
-print(prediction[0])
-print(knn.predict_proba(unknown1))
-
 from sklearn.model_selection import train_test_split
 #random_state: set seed for random# generator
 #test_size: default 25% testing, 75% training
@@ -82,7 +62,7 @@ scatter = scatter_matrix(X, c=y, marker='o', s=40, hist_kwds={'bins':15}, figsiz
 
 # plotting a 3D scatter plot
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import axes3d   # must keep
+# from mpl_toolkits.mplot3d import axes3d. must keep
 fig = plt.figure()
 ax = fig.add_subplot(111, projection = '3d')
 ax.scatter(X['pelvic_incidence'], X['pelvic_tilt'], X['pelvic_radius'], c = y, marker = 'o', s=100)
@@ -105,7 +85,7 @@ plt.xticks([0, 2, 4, 6, 8])
 # How sensitive is k-NN classification accuracy to the train/test split proportion?
 import numpy as np
 t = [0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2]
-knn = KNeighborsClassifier(n_neighbors=kpractice, p=PPRACTICE)
+knn = KNeighborsClassifier(n_neighbors=KPRACTICE, p=PPRACTICE)
 plt.figure()
 for s in t:
     scores = []
