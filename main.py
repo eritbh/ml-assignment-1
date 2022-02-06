@@ -69,7 +69,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=PERPRACTICE,
 knn.fit(X_train, y_train)
 
 # Estimate the accuracy of the classifier on future data, using the test data
-knn.score(X_test, y_test)
+print(f"\nOverall model accuracy: {100 * knn.score(X_test, y_test):.2f}%")
 
 # Confusion Matrix
 from sklearn.metrics import confusion_matrix
