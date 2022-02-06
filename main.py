@@ -54,7 +54,7 @@ for class_name in data['category'].unique():
     print("\nMean data point in class:")
     print(rows_attributes_only.mean())
     print("\nMedian data point in class:")
-    print(rows_attributes_only.mean())
+    print(rows_attributes_only.median())
     print("\nMinimums in class:")
     print(rows_attributes_only.min())
     print("\nMaximums in class:")
@@ -97,8 +97,8 @@ for pVal in p_range:
 # plotting a scatter matrix
 from matplotlib import cm
 from pandas.plotting import scatter_matrix
-cmap = cm.get_cmap('gnuplot')
-scatter = scatter_matrix(X, c=y, marker='o', s=40, hist_kwds={'bins':15}, figsize=(9,9), cmap=cmap)
+# cmap = cm.get_cmap('Spectral')
+scatter = scatter_matrix(X, c=y, marker='o', s=40, hist_kwds={'bins':15}, figsize=(9,9), cmap=None)
 
 # plotting a 3D scatter plot
 import matplotlib.pyplot as plt
