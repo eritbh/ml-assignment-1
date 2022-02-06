@@ -77,7 +77,18 @@ print(f"\nOverall model accuracy: {100 * knn.score(X_test, y_test):.2f}%")
 from sklearn.metrics import confusion_matrix
 y_prediction = knn.predict(X_test)
 confusion_matrix_result = confusion_matrix(y_test, y_prediction)
-print("Confusion Matrix:\n", confusion_matrix_result)
+print("\nConfusion Matrix:")
+print("______| Predicted")
+#print("   DH, SL, NO")
+class_labels = ['DH', 'SL', 'NO']
+
+# printing header row
+print(f"{'True' : <5} |{class_labels[0] : ^5}{class_labels[1] : ^5}{class_labels[2] : ^5}|")
+
+# printing data rows
+for i in range(0, 3):
+    print(f"{class_labels[i] : <5} |{confusion_matrix_result[i][0] : ^5}{confusion_matrix_result[i][1] : ^5}{confusion_matrix_result[i][2] : ^5}|")
+
 
 # How sensitive is k-NN classification accuracy to the choice of the 'k' parameter?
 k_range = range(1, 20)
