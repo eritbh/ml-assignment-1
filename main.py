@@ -103,12 +103,6 @@ scatter = scatter_matrix(X, c=y, marker='o', s=40, hist_kwds={'bins':15}, figsiz
 # plotting a 3D scatter plot
 import matplotlib.pyplot as plt
 # from mpl_toolkits.mplot3d import axes3d. must keep
-fig = plt.figure()
-ax = fig.add_subplot(111, projection = '3d')
-ax.scatter(X['pelvic_incidence'], X['pelvic_tilt'], X['pelvic_radius'], c = y, marker = 'o', s=100)
-ax.set_xlabel('pelvic_incidence')
-ax.set_ylabel('pelvic_tilt')
-ax.set_zlabel('pelvic_radius')
 
 plt.figure()
 plt.xlabel('k')
