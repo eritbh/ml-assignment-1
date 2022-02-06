@@ -71,6 +71,12 @@ knn.fit(X_train, y_train)
 # Estimate the accuracy of the classifier on future data, using the test data
 knn.score(X_test, y_test)
 
+# Confusion Matrix
+from sklearn.metrics import confusion_matrix
+y_prediction = knn.predict(X_test)
+confusion_matrix_result = confusion_matrix(y_test, y_prediction)
+print("Confusion Matrix:\n", confusion_matrix_result)
+
 # How sensitive is k-NN classification accuracy to the choice of the 'k' parameter?
 k_range = range(1, 20)
 kScores = []
