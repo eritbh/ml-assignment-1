@@ -28,10 +28,10 @@ knn.fit(X, y)
 
 # Create report on data
 import numpy as np
-print("This dataset has 6 attributes\n")
-print("The class distribution of this dataset is: ", "\n")
-print("Our data is partitioned to: ", 100 * (1 - PERPRACTICE), "% Training ", 100 * PERPRACTICE, "% Testing\n")
-print("Our distance calculations use the Minkowski distance function with p=", PPRACTICE, "\n")
+print("This dataset has 6 attributes")
+print("The class distribution of this dataset is:")
+print("Our data is partitioned to:", 100 * (1 - PERPRACTICE), "% Training ", 100 * PERPRACTICE, "% Testing")
+print("Our distance calculations use the Minkowski distance function with p =", PPRACTICE, "")
 
 from sklearn.model_selection import train_test_split
 #random_state: set seed for random# generator
